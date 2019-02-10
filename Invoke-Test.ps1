@@ -1,2 +1,2 @@
 Param([Parameter(Mandatory=$true)][String]$DockerTarget)
-docker run $DockerTarget PowerShell -Command "$PSVersionTable"
+docker run $DockerTarget PowerShell -Command "Write-Host 'Pester is working if the next tests fails' ; New-Fixture -Path . -Name Invoke-IShouldFail; Invoke-Pester ./Invoke-IShouldFail* ; Write-Host 'PSScriptAnalyzer is working if it reports 0 rule violations found. Running Invoke-ScriptAnalyzer...' ; Invoke-ScriptAnalyzer -Path . -ReportSummary"
