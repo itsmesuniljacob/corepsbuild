@@ -1,6 +1,3 @@
-FROM microsoft/powershell:nanoserver-1709
-USER ContainerAdministrator
-RUN setx PATH "%PATH%";"%PROGRAMFILES%"\Powershell
-RUN pwsh -Command Install-Module -Name "PSScriptAnalyzer" -Force -SkipPublisherCheck
-RUN pwsh -Command Install-Module -Name "Pester" -Force -SkipPublisherCheck
-USER ContainerUser
+FROM microsoft/servercore:10.0.14393.2665
+RUN PowerShell -Command Install-Module -Name "PSScriptAnalyzer" -Force -SkipPublisherCheck
+RUN PowerShell -Command Install-Module -Name "Pester" -Force -SkipPublisherCheck
