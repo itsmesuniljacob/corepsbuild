@@ -1,2 +1,2 @@
-# nanopsbuild
-Docker container for Windows Nanoserver Powershell-based builds
+# corepsbuild
+Docker container for Windows Server Core Powershell-based builds
