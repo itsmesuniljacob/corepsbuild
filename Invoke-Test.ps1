@@ -1,2 +1,2 @@
 Param([Parameter(Mandatory=$true)][String]$DockerTarget)
-docker run $DockerTarget pwsh -ver
+docker run $DockerTarget PowerShell -Command "$PSVersionTable"
