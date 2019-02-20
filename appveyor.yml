@@ -15,5 +15,4 @@ test_script:
   - ps: .\Invoke-Test.ps1 -DockerTarget $env:DOCKER_TARGET
 deploy_script:
   - docker login -u="%DOCKER_USER%" -p="%DOCKER_PASS%"
-  - ps: .\Invoke-De
-  ploy.ps1 -DockerTarget $env:DOCKER_TARGET
+  - ps: .\Invoke-Deploy.ps1 -DockerTarget $env:DOCKER_TARGET
