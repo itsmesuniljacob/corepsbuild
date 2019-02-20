@@ -13,7 +13,7 @@ $Results = Invoke-ScriptAnalyzer -Path $pwd -Recurse -ErrorAction SilentlyContin
 If ($Results) {
     $ResultString = $Results | Out-String
     Write-Warning $ResultString
-    If ($AppVeyor.IsPresent) { 
+    If ($AppVeyor.IsPresent) {
         Add-AppveyorMessage -Message "$TestName failed. See test results for more details" -Category Error
         Update-AppveyorTest -Name "$TestName" -Outcome Failed -ErrorMessage $ResultString
     }
