@@ -1,5 +1,8 @@
 Param([Switch]$AppVeyor,[Parameter(Mandatory=$true)][String]$DockerTarget)
 
+Install-PackageProvider -Name NuGet -Force
+Install-Module PsScriptAnalyzer -Force
+
 $TestName = "PSScriptAnalyzerShouldHaveZeroFindings"
 If ($AppVeyor.IsPresent) {
     Add-AppveyorTest -Name $TestName -Outcome Running
