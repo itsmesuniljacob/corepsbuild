@@ -12,7 +12,7 @@ install:
 build_script:
   - ps: .\Invoke-Build.ps1 -DockerTarget $env:DOCKER_TARGET
 test_script:
-  - ps: .\Invoke-Test.ps1 -DockerTarget $env:DOCKER_TARGET
+  - ps: .\Invoke-Test.ps1 -AppVeyor -DockerTarget $env:DOCKER_TARGET
 deploy_script:
   - docker login -u="%DOCKER_USER%" -p="%DOCKER_PASS%"
   - ps: .\Invoke-Deploy.ps1 -DockerTarget $env:DOCKER_TARGET
