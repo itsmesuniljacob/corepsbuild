@@ -1,6 +1,6 @@
 image: Visual Studio 2017
 environment:
-  DOCKER_TARGET: simaos/nanopsbuild
+  DOCKER_TARGET: simaos/corepsbuild
   DOCKER_USER:
     secure: 09M6/EHaWHd+zNyhVD2LNQ==
   DOCKER_PASS:
