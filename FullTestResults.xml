@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="4" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2019-02-28" time="13:33:24">
+  <environment user="310244944" machine-name="YY099027" cwd="C:\source\gitrepos\corepsbuild" user-domain="CODE1" platform="Microsoft Windows 10 Enterprise|C:\WINDOWS|\Device\Harddisk0\Partition4" nunit-version="2.5.8.0" os-version="10.0.16299" clr-version="4.0.30319.42000" />
+  <culture-info current-culture="en-GB" current-uiculture="en-US" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="88.002" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="C:\source\gitrepos\corepsbuild\Functional.Tests.ps1" executed="True" result="Success" success="True" time="87.4795" asserts="0" description="C:\source\gitrepos\corepsbuild\Functional.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="container" executed="True" result="Success" success="True" time="87.4795" asserts="0" description="container">
+            <results>
+              <test-case description="should have at least one nuget package provider installed" name="container.should have at least one nuget package provider installed" time="34.8333" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="should have at least one Pester module installed" name="container.should have at least one Pester module installed" time="25.5072" asserts="0" success="True" result="Success" executed="True" />
+              <test-case description="should have at least one PSScriptAnalyzer module installed" name="container.should have at least one PSScriptAnalyzer module installed" time="27.139" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="TestFixture" name="C:\source\gitrepos\corepsbuild\StaticAnalysis.Tests.ps1" executed="True" result="Success" success="True" time="0.5225" asserts="0" description="C:\source\gitrepos\corepsbuild\StaticAnalysis.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="static analysis" executed="True" result="Success" success="True" time="0.5225" asserts="0" description="static analysis">
+            <results>
+              <test-case description="should not have any findings" name="static analysis.should not have any findings" time="0.5225" asserts="0" success="True" result="Success" executed="True" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

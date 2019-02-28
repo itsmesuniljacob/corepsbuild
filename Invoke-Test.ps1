@@ -1,27 +1,11 @@
+#Requires -Version 5.0
+#Requires -Modules @{ ModuleName="PSScriptAnalyzer"; ModuleVersion="1.16" }
+#Requires -Modules @{ ModuleName="Pester"; ModuleVersion="4.0" }
 Param([Switch]$AppVeyor,[Parameter(Mandatory=$true)][String]$DockerTarget)
-
-Install-PackageProvider -Name NuGet -Force
-Install-Module PsScriptAnalyzer -Force
-
-$TestName = "PSScriptAnalyzerShouldHaveZeroFindings"
-If ($AppVeyor.IsPresent) {
-    Add-AppveyorTest -Name $TestName -Outcome Running
+Write-Output "Run all tests"
+$result = Invoke-Pester . -PassThru -OutputFile FullTestResults.xml -OutputFormat NUnitXml
+If ($result.FailedCount -ne 0) {
+    Write-Output "${result.FailedCount} tests failed - aborting build"
+    Exit $result.FailedCount
 }
-Write-Information "$TestName Running"
-
-$Results = Invoke-ScriptAnalyzer -Path $pwd -Recurse -ErrorAction SilentlyContinue
-If ($Results) {
-    $ResultString = $Results | Out-String
-    Write-Warning $ResultString
-    If ($AppVeyor.IsPresent) {
-        Add-AppveyorMessage -Message "$TestName failed. See test results for more details" -Category Error
-        Update-AppveyorTest -Name "$TestName" -Outcome Failed -ErrorMessage $ResultString
-    }
-    Throw "Fail build: $TestName has findings"
-}
-Else {
-    Write-Information "$TestName passed"
-    Update-AppveyorTest -Name "PsScriptAnalyzer" -Outcome Passed
-}
-
-docker run $DockerTarget PowerShell -Command "Write-Host 'Pester is working if the next tests fails' ; New-Fixture -Path . -Name Invoke-IShouldFail; Invoke-Pester ./Invoke-IShouldFail* ; Write-Host 'PSScriptAnalyzer is working if it reports 0 rule violations found. Running Invoke-ScriptAnalyzer...' ; Invoke-ScriptAnalyzer -Path . -ReportSummary"
+Write-Output "Tests complete"
