@@ -5,10 +5,12 @@ environment:
     secure: 09M6/EHaWHd+zNyhVD2LNQ==
   DOCKER_PASS:
     secure: gvgvfMOklGvBlsbXpw68WQ==
-install:
+init:
+  - systeminfo
   - docker version
   - echo DOCKER_TARGET is %DOCKER_TARGET%
-  - systeminfo
+install:
+  - ps: .\Install-BuildDependencies.ps1
 build_script:
   - ps: .\Invoke-Build.ps1 -DockerTarget $env:DOCKER_TARGET
 test_script:

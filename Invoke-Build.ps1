@@ -1,5 +1,4 @@
 #Requires -Version 5.0
-#Requires -Modules PSScriptAnalyzer, Pester
 #Requires -Modules @{ ModuleName="PSScriptAnalyzer"; ModuleVersion="1.16" }
 #Requires -Modules @{ ModuleName="Pester"; ModuleVersion="4.0" }
 Param([Parameter(Mandatory=$true)][String]$DockerTarget)
