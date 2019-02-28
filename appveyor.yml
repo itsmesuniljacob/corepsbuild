@@ -15,7 +15,9 @@ build_script:
   - ps: .\Invoke-Build.ps1 -DockerTarget $env:DOCKER_TARGET
 test_script:
   - ps: .\Invoke-Test.ps1 -AppVeyor -DockerTarget $env:DOCKER_TARGET
-  - ps: .\Send-TestResultsToAppVeyor.ps1
 deploy_script:
   - docker login -u="%DOCKER_USER%" -p="%DOCKER_PASS%"
   - ps: .\Invoke-Deploy.ps1 -DockerTarget $env:DOCKER_TARGET
+on_finish:
+  - sh: |
+      find "$APPVEYOR_BUILD_FOLDER" -type f -name '*TestResults.xml' -print0 | xargs -0 -I '{}' curl -F 'file=@{}' "https://ci.appveyor.com/api/testresults/nunit/$APPVEYOR_JOB_ID"
