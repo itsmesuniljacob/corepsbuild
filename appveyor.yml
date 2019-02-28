@@ -19,9 +19,12 @@ deploy_script:
   - docker login -u="%DOCKER_USER%" -p="%DOCKER_PASS%"
   - ps: .\Invoke-Deploy.ps1 -DockerTarget $env:DOCKER_TARGET
 on_finish:
+  - cmd: cd
+  - cmd: dir
+  - cmd: dir %APPVEYOR_BUILD_FOLDER%
   - ps: Write-Output "Listing *TestResults.xml in $env:APPVEYOR_BUILD_FOLDER"
-  - sh: find "$APPVEYOR_BUILD_FOLDER" -type f -name '*TestResults.xml' -print0
+  - sh: find "$APPVEYOR_BUILD_FOLDER" -type f -name "*TestResults.xml" -print0
   - ps: Write-Output "Listing directory contents"
-  - sh: find "$APPVEYOR_BUILD_FOLDER" -type f -name '*TestResults.xml' -print0
+  - sh: find "$APPVEYOR_BUILD_FOLDER" -type f -name "*TestResults.xml" -print0
   - ps: Write-Output "Uploading test results"
-  - sh: find "$APPVEYOR_BUILD_FOLDER" -type f -name '*TestResults.xml' -print0 | xargs -0 -I '{}' curl -F 'file=@{}' "https://ci.appveyor.com/api/testresults/nunit/$APPVEYOR_JOB_ID"
+  - sh: find "$APPVEYOR_BUILD_FOLDER" -type f -name "*TestResults.xml" -print0 | xargs -0 -I "{}" curl -F "file=@{}" "https://ci.appveyor.com/api/testresults/nunit/$APPVEYOR_JOB_ID"
