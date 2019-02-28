@@ -1,3 +1,4 @@
+#Requires -Version 5.0
 Write-Output "Installing NuGet package provider"
 Install-PackageProvider -MinimumVersion 2.0 -Name "Nuget" -Force
 Write-Output "Installing PSScriptAnalyzer module"
