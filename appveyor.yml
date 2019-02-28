@@ -22,7 +22,8 @@ on_finish:
   - cmd: cd
   - cmd: dir
   - cmd: dir %APPVEYOR_BUILD_FOLDER%
-  - ps: Write-Output "Listing *TestResults.xml in $env:APPVEYOR_BUILD_FOLDER"
+  - cmd: echo %APPVEYOR_BUILD_FOLDER%
+  - ps: Write-Output "Listing *TestResults.xml in ${env:APPVEYOR_BUILD_FOLDER}"
   - sh: find "$APPVEYOR_BUILD_FOLDER" -type f -name "*TestResults.xml" -print0
   - ps: Write-Output "Listing directory contents"
   - sh: find "$APPVEYOR_BUILD_FOLDER" -type f -name "*TestResults.xml" -print0
